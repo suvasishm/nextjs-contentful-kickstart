@@ -43,14 +43,14 @@ function HomePage() {
             ? posts.map(p => (
                 <Post
                     title={p.fields.title}
+                    key={p.fields.title}
                     content={p.fields.content}
                     date={p.fields.date}
-                    key={p.fields.title}
                 />
             ))
-            : null}
+            : "no post!!"}
 
-            Then end!
+            What is happening!!
       </>
   )
 }
