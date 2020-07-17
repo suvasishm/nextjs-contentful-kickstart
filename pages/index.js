@@ -39,6 +39,7 @@ function HomePage() {
               type="text/css"
           />
         </Head>
+        hello
         {posts.length > 0
             ? posts.map(p => (
                 <Post
