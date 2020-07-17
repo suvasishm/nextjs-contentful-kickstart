@@ -1,19 +1,16 @@
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
-import Post from '../components/post'
+import Brand from '../components/brand'
 
 const client = require('contentful').createClient({
   space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
-  accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
-  environment: process.env.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT,
-  host: process.env.NEXT_PUBLIC_CONTENTFUL_HOST
+  accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN
 })
 
 function HomePage() {
   async function fetchEntries() {
     const entries = await client.getEntries({
-      content_type: 'post',
-      order: '-fields.date',
+      content_type: 'brand'
     })
     if (entries.items) return entries.items
     console.log(`Error getting Entries for ${contentType.name}.`)
@@ -39,18 +36,13 @@ function HomePage() {
               type="text/css"
           />
         </Head>
+
         {posts.length > 0
             ? posts.map(p => (
-                <Post
-                    title={p.fields.title}
-                    key={p.fields.title}
-                    content={p.fields.content}
-                    date={p.fields.date}
-                />
+                <Brand fields={p.fields} key={p.fields.companyName} />
             ))
             : "no post!!"}
 
-        What is happening!!
       </>
   )
 }

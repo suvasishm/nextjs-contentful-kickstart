@@ -1,10 +1,11 @@
-function Post({ title, content, date }) {
+function Brand({ fields }) {
   return (
       <div className="container">
         <div className="text">
-          <h2>{title}</h2>
-          <p>{content}</p>
-          <h4>{date}</h4>
+          <a href={fields.website}>
+            <img alt={fields.companyName} src={fields.logo.fields.file.url} />
+          </a>
+          <p>{fields.companyDescription}</p>
         </div>
         <style jsx>{`
         .container {
@@ -39,4 +40,4 @@ function Post({ title, content, date }) {
   )
 }
 
-export default Post
+export default Brand
