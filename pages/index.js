@@ -9,8 +9,8 @@ const client = require('contentful').createClient({
   host: process.env.NEXT_PUBLIC_CONTENTFUL_HOST
 })
 
-function HomePage() {
-  async function fetchEntries() {
+function HomePage({posts}) {
+  /*async function fetchEntries() {
     const entries = await client.getEntries({
       content_type: 'post',
       order: '-fields.date',
@@ -27,7 +27,7 @@ function HomePage() {
       setPosts([...allPosts])
     }
     getPosts()
-  }, [])
+  }, [])*/
 
   return (
       <>
@@ -53,6 +53,19 @@ function HomePage() {
             What is happening!!
       </>
   )
+}
+
+export async function getStaticProps() {
+  const entries = await client.getEntries({
+    content_type: 'post',
+    order: '-fields.date',
+  })
+
+  const posts = entries?.items
+
+  return {
+    props: { posts },
+  }
 }
 
 export default HomePage
