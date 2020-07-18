@@ -1,0 +1,1 @@
+https://nextjs-contentful-kickstart.vercel.app/
